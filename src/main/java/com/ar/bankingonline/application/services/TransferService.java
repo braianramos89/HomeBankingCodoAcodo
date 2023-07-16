@@ -61,7 +61,7 @@ public class TransferService {
     }
 
     @Transactional
-    public TransferDto performTransfer(TransferDto dto) {
+    public TransferDto performTransfer(@org.jetbrains.annotations.NotNull TransferDto dto) {
         // Comprobar si las cuentas de origen y destino existen
         Account originAccount = accountRepository.findById(dto.getOrigin())
                 .orElseThrow(() -> new AccountNotFoundException("Account not found with id: " + dto.getOrigin()));

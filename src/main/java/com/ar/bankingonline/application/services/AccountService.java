@@ -7,6 +7,7 @@ import com.ar.bankingonline.domain.models.Account;
 import com.ar.bankingonline.domain.models.User;
 import com.ar.bankingonline.infrastructure.repositories.AccountRepository;
 import com.ar.bankingonline.infrastructure.repositories.UserRepository;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,7 +39,7 @@ public class AccountService {
     }
 
     @Transactional
-    public AccountDto createAccount(AccountDto account){
+    public AccountDto createAccount(@NotNull AccountDto account){
         Optional<User> user=userRepository.findById(account.getOwner().getId());
         Account accountModel=AccountMapper.dtoToAccount(account);
         accountModel.setOwner(user.get());
